@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "191f5c66-3b08-441e-af53-62bc19c5c0ca",
+		"name": "week1-day1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21096662",
+		"_collection_link": "https://www.postman.com/ff6666-1104/workspace/rest-api-session1-may/collection/21096662-191f5c66-3b08-441e-af53-62bc19c5c0ca?action=share&source=collection_link&creator=21096662"
+	},
+	"item": [
+		{
+			"name": "retrieve-records-from-incident-table-response-as-json",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{vault:authorization-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://dev268947.service-now.com/api/now/table/incident",
+					"protocol": "https",
+					"host": [
+						"dev268947",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "retrieve-records-from-changeRequest-table-response-as-json Copy",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{vault:authorization-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://dev268947.service-now.com/api/now/table/:tableName",
+					"protocol": "https",
+					"host": [
+						"dev268947",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						":tableName"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "change_request"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

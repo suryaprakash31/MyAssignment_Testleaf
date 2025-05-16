@@ -1,0 +1,582 @@
+{
+	"info": {
+		"_postman_id": "ead403ad-badb-4c1a-a48d-9830049f0903",
+		"name": "week1-day2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21096662",
+		"_collection_link": "https://www.postman.com/ff6666-1104/workspace/rest-api-session1-may/collection/21096662-ead403ad-badb-4c1a-a48d-9830049f0903?action=share&source=collection_link&creator=21096662"
+	},
+	"item": [
+		{
+			"name": "retrieve-records-from-incident-using-query-params",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{vault:authorization-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://dev268947.service-now.com/api/now/table/:tableName/:sys_id?sysparm_limit=3&sysparm_fields=number, sys_id,short_description, description",
+					"protocol": "https",
+					"host": [
+						"dev268947",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						":tableName",
+						":sys_id"
+					],
+					"query": [
+						{
+							"key": "sysparm_limit",
+							"value": "3"
+						},
+						{
+							"key": "sysparm_fields",
+							"value": "number, sys_id,short_description, description"
+						}
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "incident"
+						},
+						{
+							"key": "sys_id",
+							"value": "1c832706732023002728660c4cf6a7b9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-record-using-delete-request",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{vault:authorization-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://dev268947.service-now.com/api/now/table/:tableName/:sys_id",
+					"protocol": "https",
+					"host": [
+						"dev268947",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						":tableName",
+						":sys_id"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "incident"
+						},
+						{
+							"key": "sys_id",
+							"value": "1c832706732023002728660c4cf6a7b9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-record-without-body",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{vault:authorization-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://dev268947.service-now.com/api/now/table/:tableName",
+					"protocol": "https",
+					"host": [
+						"dev268947",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						":tableName"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "incident"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-new-incident-with-body",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{vault:authorization-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"2nd Incident created using post method with body for testing\",\r\n    \"short_description\": \"May RestAPI session 2 TestLeaf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev268947.service-now.com/api/now/table/:tableName",
+					"protocol": "https",
+					"host": [
+						"dev268947",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						":tableName"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "incident"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-records-using-put",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{vault:authorization-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Record has been updated using post method\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev268947.service-now.com/api/now/table/:tableName/:sys_id",
+					"protocol": "https",
+					"host": [
+						"dev268947",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						":tableName",
+						":sys_id"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "incident"
+						},
+						{
+							"key": "sys_id",
+							"value": "39be302d83ad2650d43397efeeaad3a2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-records-using-patch",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{vault:authorization-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"2nd Record has been updated using patch method\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev268947.service-now.com/api/now/table/:tableName/:sys_id",
+					"protocol": "https",
+					"host": [
+						"dev268947",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						":tableName",
+						":sys_id"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "incident"
+						},
+						{
+							"key": "sys_id",
+							"value": "ed1f30ad83ad2650d43397efeeaad3f8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-created-records-incident",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{vault:authorization-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://dev268947.service-now.com/api/now/table/:tableName/:sys_id",
+					"protocol": "https",
+					"host": [
+						"dev268947",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						":tableName",
+						":sys_id"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "incident"
+						},
+						{
+							"key": "sys_id",
+							"value": "39be302d83ad2650d43397efeeaad3a2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-change-request-record-home-assignement",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate the Sys_Id key after creating\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.result.sys_id).to.eql(\"c90e96a183a56650d43397efeeaad391\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate the Number key after creating\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.result.sys_id).to.eql(\"CHG0030001\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{vault:authorization-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\": \"Create ChangeRequest via postman\",\r\n    \"description\": \"ChangeRequest has been created for tesing\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev268947.service-now.com/api/now/table/:tableName",
+					"protocol": "https",
+					"host": [
+						"dev268947",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						":tableName"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "change_request"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "retrive-data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate the Sys_Id key after creating\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.result.sys_id).to.eql(\"c90e96a183a56650d43397efeeaad391\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate the Number key after creating\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.result.number).to.eql(\"CHG0030001\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{vault:authorization-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev268947.service-now.com/api/now/table/:tableName/:sys_id",
+					"protocol": "https",
+					"host": [
+						"dev268947",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						":tableName",
+						":sys_id"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "change_request"
+						},
+						{
+							"key": "sys_id",
+							"value": "c90e96a183a56650d43397efeeaad391"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
