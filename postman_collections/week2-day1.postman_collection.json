@@ -1,0 +1,492 @@
+{
+	"info": {
+		"_postman_id": "f7e564d6-6da6-4e21-b0d4-15606a49e14b",
+		"name": "week2-day1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21096662",
+		"_collection_link": "https://www.postman.com/ff6666-1104/workspace/rest-api-session1-may/collection/21096662-f7e564d6-6da6-4e21-b0d4-15606a49e14b?action=share&source=collection_link&creator=21096662"
+	},
+	"item": [
+		{
+			"name": "create-record-using-variables-and-test-request-chaining",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has Created\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});\r",
+							"\r",
+							"var jsonVal = pm.response.json();\r",
+							"pm.collectionVariables.set(\"SysID\", jsonVal.result.sys_id)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{protocal}}://{{hostname}}/{{basepath}}/:tablename",
+					"protocol": "{{protocal}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"{{basepath}}",
+						":tablename"
+					],
+					"variable": [
+						{
+							"key": "tablename",
+							"value": "{{tablename}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch-data-from-collection-variable",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocal}}://{{hostname}}/{{basepath}}/:tablename/:sysID",
+					"protocol": "{{protocal}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"{{basepath}}",
+						":tablename",
+						":sysID"
+					],
+					"variable": [
+						{
+							"key": "tablename",
+							"value": "{{tablename}}"
+						},
+						{
+							"key": "sysID",
+							"value": "{{SysID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-record-using-variable-and-request-chaining",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{protocal}}://{{hostname}}/{{basepath}}/:tablename/:sysID",
+					"protocol": "{{protocal}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"{{basepath}}",
+						":tablename",
+						":sysID"
+					],
+					"variable": [
+						{
+							"key": "tablename",
+							"value": "{{tablename}}"
+						},
+						{
+							"key": "sysID",
+							"value": "{{SysID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-record-to-test-request-chaining",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"pm.test(\"Status code name has No Content\", function () {\r",
+							"    pm.response.to.have.status(\"No Content\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{protocal}}://{{hostname}}/{{basepath}}/:tablename/:sysID",
+					"protocol": "{{protocal}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"{{basepath}}",
+						":tablename",
+						":sysID"
+					],
+					"variable": [
+						{
+							"key": "tablename",
+							"value": "{{tablename}}"
+						},
+						{
+							"key": "sysID",
+							"value": "{{SysID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validate-the-records",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"pm.test(\"Status code name has Not Found\", function () {\r",
+							"    pm.response.to.have.status(\"Not Found\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocal}}://{{hostname}}/{{basepath}}/:tablename/:sysID",
+					"protocol": "{{protocal}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"{{basepath}}",
+						":tablename",
+						":sysID"
+					],
+					"variable": [
+						{
+							"key": "tablename",
+							"value": "{{tablename}}"
+						},
+						{
+							"key": "sysID",
+							"value": "{{SysID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create-record-using-csv",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has Created\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"{{Description}}\",\r\n    \"short_description\": \"{{ShortDescription}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocal}}://{{hostname}}/{{basepath}}/:tablename",
+					"protocol": "{{protocal}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"{{basepath}}",
+						":tablename"
+					],
+					"variable": [
+						{
+							"key": "tablename",
+							"value": "{{tablename}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create-record-using-json-file",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has Created\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"{{Description}}\",\r\n    \"short_description\": \"{{ShortDescription}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocal}}://{{hostname}}/{{basepath}}/:tablename",
+					"protocol": "{{protocal}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"{{basepath}}",
+						":tablename"
+					],
+					"variable": [
+						{
+							"key": "tablename",
+							"value": "{{tablename}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "tablename",
+			"value": "incident",
+			"type": "string"
+		},
+		{
+			"key": "basepath",
+			"value": "api/now/table",
+			"type": "string"
+		},
+		{
+			"key": "SysID",
+			"value": ""
+		}
+	]
+}
